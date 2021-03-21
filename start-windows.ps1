@@ -1,0 +1,16 @@
+docker run --restart unless-stopped --name minecraft `
+-v /f/Minecraft/server.properties:/opt/minecraft/server.properties `
+-v /f/Minecraft/server-icon.png:/opt/minecraft/server-icon.png `
+-v /f/Minecraft/spigot.yml:/opt/minecraft/spigot.yml `
+-v /f/Minecraft/bukkit.yml:/opt/minecraft/bukkit.yml `
+-v /f/Minecraft/paper.yml:/opt/minecraft/paper.yml `
+-v /f/Minecraft/commands.yml:/opt/minecraft/commands.yml `
+-v /f/Minecraft/logs/:/opt/minecraft/logs/ `
+-v /f/Minecraft/backups/:/opt/minecraft/backups/ `
+-v /f/Minecraft/plugins/:/opt/minecraft/plugins/ `
+-v /f/Minecraft/worlds/:/opt/minecraft/worlds/ `
+-v /f/Minecraft/whitelist.json:/opt/minecraft/whitelist.json `
+-v /f/Minecraft/ops.json:/opt/minecraft/ops.json `
+-v /f/Minecraft/banned-ips.json:/opt/minecraft/banned-ips.json `
+-v /f/Minecraft/banned-players.json:/opt/minecraft/banned-players.json `
+-p 25565:25565 -i -t minecraft:latest

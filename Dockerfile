@@ -1,10 +1,10 @@
-FROM openjdk:8
+FROM openjdk:11
 
 # Temporary workdir
 WORKDIR /tmp/minecraft
 
 # currently using version 1.16.1.
-ARG papermc_version=1.16.1
+ARG papermc_version=1.16.4
 ARG papermc_uri=https://papermc.io/api/v1/paper/${papermc_version}/latest/download
 ENV PAPERMC_URI=$papermc_uri
 
@@ -12,7 +12,7 @@ ENV PAPERMC_URI=$papermc_uri
 ADD ${PAPERMC_URI} /tmp/minecraft/papermc.jar
 
 # Patch Papermc to the newest version
-RUN /usr/local/openjdk-8/bin/java -jar /tmp/minecraft/papermc.jar; exit 0
+RUN /usr/local/openjdk-11/bin/java -jar /tmp/minecraft/papermc.jar; exit 0
 
 # Switch workdir
 WORKDIR /opt/minecraft
@@ -24,7 +24,7 @@ RUN echo eula=true >> eula.txt
 RUN useradd -ms /bin/bash minecraft && chown minecraft /opt/minecraft -R
 
 # Move patched Papermc.jar to the workdir /opt/minecraft
-RUN mv /tmp/minecraft/cache/patched_1.16.1.jar papermc.jar && rm -rf /tmp/minecraft
+RUN mv /tmp/minecraft/cache/patched_1.16.4.jar papermc.jar && rm -rf /tmp/minecraft
 
 # Switch to service user
 USER minecraft
@@ -34,7 +34,7 @@ EXPOSE 25565
 
 # Start the Minecraft server with java flags for better performance and using world-container /worlds
 # See https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/ for more
-ENTRYPOINT /usr/local/openjdk-8/bin/java -jar \
+ENTRYPOINT /usr/local/openjdk-11/bin/java -jar \
 	-Xms4G \
     -Xmx4G \
 	-XX:+UseG1GC \

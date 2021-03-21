@@ -1,0 +1,17 @@
+#!/bin/bash
+docker run --restart unless-stopped --name minecraft \
+-v F:/Minecraft/server.properties:/opt/minecraft/server.properties \
+-v F:/Minecraft/server-icon.png:/opt/minecraft/server-icon.png \
+-v F:/Minecraft/spigot.yml:/opt/minecraft/spigot.yml \
+-v F:/Minecraft/bukkit.yml:/opt/minecraft/bukkit.yml \
+-v F:/Minecraft/paper.yml:/opt/minecraft/paper.yml \
+-v F:/Minecraft/commands.yml:/opt/minecraft/commands.yml \
+-v F:/Minecraft/logs/:/opt/minecraft/logs/ \
+-v F:/Minecraft/backups/:/opt/minecraft/backups/ \
+-v F:/Minecraft/plugins/:/opt/minecraft/plugins/ \
+-v F:/Minecraft/worlds/:/opt/minecraft/worlds/ \
+-v F:/Minecraft/whitelist.json:/opt/minecraft/whitelist.json \
+-v F:/Minecraft/ops.json:/opt/minecraft/ops.json \
+-v F:/Minecraft/banned-ips.json:/opt/minecraft/banned-ips.json \
+-v F:/Minecraft/banned-players.json:/opt/minecraft/banned-players.json \
+-p 25565:25565 -i -t minecraft:latest
